@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780">
+  <defs>
+    <style>
+      .title{font:700 32px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .subtitle{font:400 17px "Segoe UI",Arial,sans-serif;fill:#5b6b80}
+      .box-title{font:700 20px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .box-text{font:400 15px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .white-title{font:700 20px "Segoe UI",Arial,sans-serif;fill:#ffffff}
+      .white-text{font:400 15px "Segoe UI",Arial,sans-serif;fill:#edf2ff}
+      .endpoint{font:700 15px "Segoe UI",Arial,sans-serif;fill:#2563eb}
+      .arrow{stroke:#34495e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .arrow-soft{stroke:#64748b;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .shadow{filter:url(#shadow)}
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34495e"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#f4f0ff"/>
+    </linearGradient>
+    <linearGradient id="cloudflare" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#fb923c"/>
+    </linearGradient>
+    <linearGradient id="server" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="telegram" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dff3ff"/>
+      <stop offset="1" stop-color="#bae6fd"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="780" fill="url(#bg)"/>
+  <text x="600" y="58" text-anchor="middle" class="title">Sơ đồ truy cập hệ thống qua Cloudflare</text>
+  <text x="600" y="88" text-anchor="middle" class="subtitle">Tên miền giúp mở dashboard và link xác nhận Telegram dễ hơn so với IP nội bộ</text>
+
+  <g class="shadow">
+    <rect x="70" y="180" width="260" height="96" rx="18" fill="#ffffff"/>
+    <text x="200" y="217" text-anchor="middle" class="box-title">Người giám sát</text>
+    <text x="200" y="245" text-anchor="middle" class="box-text">Mở dashboard hoặc link xác nhận</text>
+  </g>
+
+  <g class="shadow">
+    <rect x="70" y="365" width="260" height="96" rx="18" fill="url(#telegram)"/>
+    <text x="200" y="402" text-anchor="middle" class="box-title">Telegram Alert</text>
+    <text x="200" y="430" text-anchor="middle" class="box-text">Tin nhắn kèm ảnh và URL</text>
+  </g>
+
+  <g class="shadow">
+    <rect x="455" y="250" width="290" height="120" rx="22" fill="url(#cloudflare)"/>
+    <text x="600" y="293" text-anchor="middle" class="white-title">Cloudflare</text>
+    <text x="600" y="322" text-anchor="middle" class="white-text">Tên miền / Tunnel / DNS</text>
+    <text x="600" y="349" text-anchor="middle" class="white-text">PUBLIC_BASE_URL</text>
+  </g>
+
+  <g class="shadow">
+    <rect x="870" y="250" width="270" height="120" rx="22" fill="url(#server)"/>
+    <text x="1005" y="293" text-anchor="middle" class="box-title">Web server local</text>
+    <text x="1005" y="322" text-anchor="middle" class="box-text">phan_mem/web_server.py</text>
+    <text x="1005" y="349" text-anchor="middle" class="box-text">Chạy trên máy demo</text>
+  </g>
+
+  <path class="arrow" d="M330 228 C380 228,400 310,455 310"/>
+  <path class="arrow" d="M330 413 C385 413,398 310,455 310"/>
+  <path class="arrow" d="M745 310 L870 310"/>
+
+  <g class="shadow">
+    <rect x="830" y="455" width="350" height="190" rx="20" fill="#ffffff"/>
+    <text x="1005" y="492" text-anchor="middle" class="box-title">Các endpoint dùng trong hệ thống</text>
+    <text x="910" y="535" class="endpoint">/dashboard</text>
+    <text x="1015" y="535" class="box-text">Giao diện giám sát</text>
+    <text x="910" y="575" class="endpoint">/ack_alert</text>
+    <text x="1015" y="575" class="box-text">Xác nhận an toàn</text>
+    <text x="910" y="615" class="endpoint">/status</text>
+    <text x="1015" y="615" class="box-text">Trạng thái cho ESP32</text>
+  </g>
+  <path class="arrow-soft" d="M1005 370 L1005 455"/>
+
+  <g class="shadow">
+    <rect x="75" y="560" width="470" height="88" rx="18" fill="#ffffff"/>
+    <text x="310" y="596" text-anchor="middle" class="box-title">Ví dụ link Telegram</text>
+    <text x="310" y="625" text-anchor="middle" class="box-text">https://ten-mien/ack_alert?id=alert_id&amp;token=...</text>
+  </g>
+  <path class="arrow-soft" d="M200 461 L200 560"/>
+
+  <text x="600" y="710" text-anchor="middle" class="subtitle">Cloudflare không thay đổi thuật toán AI, nhưng giúp hệ thống cảnh báo dễ truy cập và dễ demo hơn</text>
+</svg>

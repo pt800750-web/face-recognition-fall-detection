@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050">
+  <defs>
+    <style>
+      .title{font:700 36px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .subtitle{font:400 18px "Segoe UI",Arial,sans-serif;fill:#5b6b80}
+      .text{font:700 18px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .sub{font:400 13px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .label{font:700 14px "Segoe UI",Arial,sans-serif;fill:#334155}
+      .arrow{stroke:#34495e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .loop{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .shadow{filter:url(#shadow)}
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34495e"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eef7f3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1800" height="1050" fill="url(#bg)"/>
+  <text x="900" y="58" text-anchor="middle" class="title">Lưu đồ thuật toán phát hiện té ngã</text>
+  <text x="900" y="90" text-anchor="middle" class="subtitle">Bản ngang phù hợp chèn vào một trang A4 ngang</text>
+
+  <!-- Row 1 -->
+  <g class="shadow"><rect x="70" y="150" width="220" height="72" rx="36" fill="#dff7ea"/><text x="180" y="194" text-anchor="middle" class="text">Bắt đầu</text></g>
+  <path class="arrow" d="M290 186 L345 186"/>
+
+  <g class="shadow"><rect x="345" y="138" width="300" height="96" rx="18" fill="#ffffff"/><text x="495" y="174" text-anchor="middle" class="text">Khởi tạo hệ thống</text><text x="495" y="199" text-anchor="middle" class="sub">Config, YOLOv8, GRU, tracker</text></g>
+  <path class="arrow" d="M645 186 L700 186"/>
+
+  <g class="shadow"><rect x="700" y="150" width="250" height="72" rx="18" fill="#e5f0ff"/><text x="825" y="194" text-anchor="middle" class="text">Mở camera/video</text></g>
+  <path class="arrow" d="M950 186 L1005 186"/>
+
+  <g class="shadow"><rect x="1005" y="150" width="230" height="72" rx="18" fill="#e5f0ff"/><text x="1120" y="194" text-anchor="middle" class="text">Đọc frame</text></g>
+  <path class="arrow" d="M1235 186 L1290 186"/>
+
+  <g class="shadow"><path d="M1410 116 L1540 186 L1410 256 L1280 186 Z" fill="#fff0c7"/><text x="1410" y="181" text-anchor="middle" class="text">Đọc được</text><text x="1410" y="207" text-anchor="middle" class="text">frame?</text></g>
+  <path class="arrow" d="M1540 186 L1610 186"/>
+  <text x="1565" y="166" class="label">Không</text>
+  <g class="shadow"><rect x="1610" y="150" width="140" height="72" rx="36" fill="#ffe2e6"/><text x="1680" y="180" text-anchor="middle" class="text">Kết thúc</text><text x="1680" y="204" text-anchor="middle" class="sub">/ kết nối lại</text></g>
+
+  <!-- Down to row 2 -->
+  <path class="arrow" d="M1410 256 L1410 315 L180 315 L180 375"/>
+  <text x="1430" y="290" class="label">Có</text>
+
+  <!-- Row 2 -->
+  <g class="shadow"><rect x="70" y="375" width="300" height="88" rx="18" fill="#dff3ff"/><text x="220" y="410" text-anchor="middle" class="text">YOLOv8 Pose</text><text x="220" y="436" text-anchor="middle" class="sub">Người, bounding box, keypoint</text></g>
+  <path class="arrow" d="M370 419 L425 419"/>
+
+  <g class="shadow"><rect x="425" y="375" width="280" height="88" rx="18" fill="#dff3ff"/><text x="565" y="410" text-anchor="middle" class="text">Person Tracker</text><text x="565" y="436" text-anchor="middle" class="sub">Gán track ID từng người</text></g>
+  <path class="arrow" d="M705 419 L760 419"/>
+
+  <g class="shadow"><rect x="760" y="375" width="320" height="88" rx="18" fill="#dff3ff"/><text x="920" y="410" text-anchor="middle" class="text">Trích xuất đặc trưng</text><text x="920" y="436" text-anchor="middle" class="sub">37 chiều: hình học, pose, motion</text></g>
+  <path class="arrow" d="M1080 419 L1135 419"/>
+
+  <g class="shadow"><rect x="1135" y="375" width="300" height="88" rx="18" fill="#f0e9ff"/><text x="1285" y="410" text-anchor="middle" class="text">Cập nhật chuỗi</text><text x="1285" y="436" text-anchor="middle" class="sub">Lưu đặc trưng theo thời gian</text></g>
+  <path class="arrow" d="M1435 419 L1490 419"/>
+
+  <g class="shadow"><path d="M1600 349 L1720 419 L1600 489 L1480 419 Z" fill="#fff0c7"/><text x="1600" y="414" text-anchor="middle" class="text">Đủ 48</text><text x="1600" y="439" text-anchor="middle" class="text">frame?</text></g>
+  <path class="loop" d="M1600 489 L1600 545 L1120 545 L1120 222"/>
+  <rect x="1345" y="515" width="175" height="32" rx="16" fill="#ffffff" opacity="0.96"/>
+  <text x="1432" y="536" text-anchor="middle" class="label">Không: đọc tiếp</text>
+
+  <!-- Down to row 3 -->
+  <path class="arrow" d="M1480 419 L1390 419 L1390 655 L180 655 L180 725"/>
+  <text x="1450" y="398" class="label">Có</text>
+
+  <!-- Row 3 -->
+  <g class="shadow"><rect x="70" y="725" width="320" height="92" rx="18" fill="#ede9fe"/><text x="230" y="761" text-anchor="middle" class="text">GRU dự đoán trạng thái</text><text x="230" y="788" text-anchor="middle" class="sub">Xác suất 8 lớp hành vi</text></g>
+  <path class="arrow" d="M390 771 L455 771"/>
+
+  <g class="shadow"><rect x="455" y="725" width="360" height="92" rx="18" fill="#ffe8b5"/><text x="635" y="761" text-anchor="middle" class="text">State machine</text><text x="635" y="788" text-anchor="middle" class="sub">Kiểm tra tốc độ rơi, tư thế, bất động</text></g>
+  <path class="arrow" d="M815 771 L880 771"/>
+
+  <g class="shadow"><path d="M1010 701 L1145 771 L1010 841 L875 771 Z" fill="#fff0c7"/><text x="1010" y="766" text-anchor="middle" class="text">Nguy hiểm?</text><text x="1010" y="791" text-anchor="middle" class="sub">FALLING/FALLEN/FAINT</text></g>
+
+  <path class="loop" d="M1010 841 L1010 925 L1120 925 L1120 222"/>
+  <rect x="870" y="890" width="210" height="34" rx="17" fill="#ffffff" opacity="0.96"/>
+  <text x="975" y="913" text-anchor="middle" class="label">Không: theo dõi tiếp</text>
+
+  <path class="arrow" d="M1145 771 L1210 771"/>
+  <text x="1170" y="750" class="label">Có</text>
+  <g class="shadow"><rect x="1210" y="725" width="270" height="92" rx="18" fill="#ffdfe5"/><text x="1345" y="761" text-anchor="middle" class="text">Tạo cảnh báo</text><text x="1345" y="788" text-anchor="middle" class="sub">Snapshot, Telegram, dashboard</text></g>
+  <path class="arrow" d="M1480 771 L1545 771"/>
+  <g class="shadow"><rect x="1545" y="725" width="210" height="92" rx="18" fill="#ffecc2"/><text x="1650" y="761" text-anchor="middle" class="text">ESP32</text><text x="1650" y="788" text-anchor="middle" class="sub">Phát âm thanh cảnh báo</text></g>
+
+  <path class="loop" d="M1650 817 L1650 960 L1120 960 L1120 222"/>
+  <rect x="1260" y="925" width="315" height="34" rx="17" fill="#ffffff" opacity="0.96"/>
+  <text x="1417" y="948" text-anchor="middle" class="label">Sau cảnh báo: tiếp tục theo dõi</text>
+</svg>

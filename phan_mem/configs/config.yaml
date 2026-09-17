@@ -1,0 +1,187 @@
+project:
+  name: "Camera AI Multi-Dataset Fall Detection"
+  seed: 42
+  log_level: "INFO"
+
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  cache_dir: "data/cache"
+  feature_dir: "data/cache/features"
+  generated_video_dir: "data/cache/generated_videos"
+  manifest_dir: "data/manifests"
+  checkpoints_dir: "checkpoints"
+  outputs_dir: "outputs"
+  logs_dir: "logs"
+
+datasets:
+  enabled:
+    - "gmdcsa24"
+    - "le2i"
+    - "up_fall"
+
+  gmdcsa24:
+    enabled: true
+    root_dir: "data/raw/gmdcsa24"
+    provider: "zenodo"
+    zenodo_record_id: "13354453"
+    archive_name: "gmdcsa24_v2.1.zip"
+    expected_md5: "3d36f2c5c1a666b99639e4e9fd843efb"
+    extract_after_download: true
+    manual_url: "https://zenodo.org/records/13354453"
+
+  le2i:
+    enabled: true
+    root_dir: "data/raw/le2i"
+    provider: "manual"
+    official_url: "https://imvia.ube.fr/fall-detection-dataset/"
+    note: "Official page currently states the data download is waiting for a new link. Place LE2I videos/annotations manually under data/raw/le2i."
+
+  up_fall:
+    enabled: true
+    root_dir: "data/raw/up_fall"
+    provider: "google_drive_or_manual"
+    official_url: "https://sites.google.com/up.edu.mx/har-up/"
+    preliminary_drive_file_id: "1Y2MSUijPcB7--PcGoAKhGeqI8GxKK0Pm"
+    download_preliminary_sensor_zip: false
+    camera_data_manual_required: true
+    note: "For visual training, download Camera1/Camera2 files from HAR-UP and place videos, image folders, or zip files under data/raw/up_fall."
+
+dataset:
+  video_extensions: [".mp4", ".avi", ".mov", ".mkv", ".wmv", ".mpeg", ".mpg"]
+  image_extensions: [".jpg", ".jpeg", ".png", ".bmp"]
+  annotation_extensions: [".csv", ".txt", ".json", ".xml"]
+
+prepare:
+  min_duration_sec: 1.0
+  min_frames: 8
+  split_strategy: "subject"
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  create_videos_from_image_sequences: true
+  generated_video_fps: 18.0
+  allow_unannotated_adl_as_normal: true
+  allow_unannotated_fall: true
+  fall_transition_seconds: 1.25
+  fall_impact_margin_seconds: 0.25
+  pseudo_fall_start_ratio: 0.35
+  pseudo_fall_transition_ratio: 0.18
+
+labels:
+  names:
+    - "NORMAL"
+    - "WALKING_STANDING"
+    - "SITTING"
+    - "BENDING"
+    - "LYING_INTENTIONAL"
+    - "FALLING"
+    - "FALLEN"
+    - "UNCONSCIOUS"
+
+detector:
+  model: "yolov8n-pose.pt"
+  confidence: 0.38
+  iou: 0.45
+  image_size: 640
+  max_detections: 20
+  device: "auto"
+
+features:
+  sample_fps: 10.0
+  sequence_length: 48
+  window_stride: 2
+  cache_features: true
+  force_rebuild_cache: false
+  min_person_confidence: 0.25
+
+model:
+  input_dim: 37
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.30
+  bidirectional: true
+  num_classes: 8
+
+train:
+  epochs: 60
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  num_workers: 0
+  patience: 12
+  grad_clip_norm: 5.0
+  class_weight_smoothing: 0.10
+  augment_noise_std: 0.012
+  augment_temporal_dropout: 0.04
+  checkpoint_metric: "fall_safety_score"
+
+tracker:
+  iou_threshold: 0.16
+  max_center_distance: 0.50
+  max_missing_frames: 45
+  min_hits: 2
+  smoothing_alpha: 0.65
+
+fall_logic:
+  model_falling_threshold: 0.46
+  model_fallen_threshold: 0.42
+  fall_score_threshold: 0.60
+  lying_aspect_threshold: 1.12
+  rapid_center_drop_threshold: 0.045
+  rapid_height_drop_threshold: 0.050
+  downward_speed_threshold: 0.022
+  strong_downward_speed_threshold: 0.060
+  strong_center_drop_threshold: 0.075
+  strong_height_drop_threshold: 0.080
+  fall_velocity_window_sec: 1.2
+  min_velocity_evidence_frames: 2
+  lying_no_velocity_score_penalty: 0.30
+  min_fall_evidence_frames: 3
+  min_stable_upright_frames_for_fall: 4
+  fall_confirmation_window_sec: 2.8
+  fallen_hold_sec: 1.0
+  faint_seconds: 60.0
+  intentional_lying_slow_speed: 0.014
+  intentional_lying_window_sec: 3.0
+  still_motion_threshold: 0.018
+  still_center_speed_threshold: 0.006
+  unconscious_seconds: 60.0
+  recovery_upright_seconds: 2.0
+  sitting_probability_block: 0.58
+  bending_probability_block: 0.58
+  intentional_lying_probability_block: 0.55
+  approach_area_growth_limit: 0.45
+  approach_score_penalty: 0.35
+  closeup_area_threshold: 0.34
+  closeup_width_threshold: 0.55
+  closeup_height_threshold: 0.68
+  closeup_top_threshold: 0.30
+  closeup_edge_margin: 0.04
+  closeup_visibility_threshold: 0.72
+  closeup_confidence_threshold: 0.80
+  closeup_score_penalty: 0.42
+  occlusion_missing_grace_sec: 1.5
+
+inference:
+  source: "0"
+  checkpoint: "checkpoints/best_model.pt"
+  display: true
+  save_annotated: true
+  save_person_clips: true
+  save_fall_clips: true
+  save_faint_clips: true
+  save_unconscious_clips: true
+  save_event_log: false
+  output_fps: 30.0
+  pre_event_seconds: 5.0
+  post_event_seconds: 5.0
+  clip_no_person_timeout_sec: 2.0
+  allow_heuristic_without_checkpoint: true
+
+web:
+  camera_count: 4
+  sources: []
+  drop_stale_frames: true
+  max_frame_width: 960
+  save_outputs: false

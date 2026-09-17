@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
+  <defs>
+    <style>
+      .title{font:700 30px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .text{font:700 20px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .sub{font:400 15px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .label{font:700 15px "Segoe UI",Arial,sans-serif;fill:#334155}
+      .conn{font:700 20px "Segoe UI",Arial,sans-serif;fill:#ffffff}
+      .conntext{font:700 15px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .arrow{stroke:#34495e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .shadow{filter:url(#shadow)}
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34495e"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="850" fill="#f4faf7"/>
+  <text x="600" y="55" text-anchor="middle" class="title">Lưu đồ phát hiện té ngã - Phần 1: Khởi tạo và đọc frame</text>
+
+  <g class="shadow">
+    <rect x="430" y="95" width="340" height="70" rx="35" fill="#dff7ea"/>
+    <text x="600" y="138" text-anchor="middle" class="text">Bắt đầu</text>
+  </g>
+  <path class="arrow" d="M600 165 L600 210"/>
+
+  <g class="shadow">
+    <rect x="310" y="210" width="580" height="90" rx="18" fill="#ffffff"/>
+    <text x="600" y="246" text-anchor="middle" class="text">Khởi tạo hệ thống</text>
+    <text x="600" y="274" text-anchor="middle" class="sub">Config, YOLOv8 Pose, GRU, tracker, state machine, AlertManager</text>
+  </g>
+  <path class="arrow" d="M600 300 L600 345"/>
+
+  <g class="shadow">
+    <rect x="360" y="345" width="480" height="80" rx="18" fill="#e5f0ff"/>
+    <text x="600" y="393" text-anchor="middle" class="text">Mở nguồn camera / video</text>
+  </g>
+  <path class="arrow" d="M600 425 L600 470"/>
+
+  <!-- Connector A: all loops from part 2 and part 3 return here -->
+  <g class="shadow">
+    <circle cx="215" cy="510" r="34" fill="#2563eb"/>
+    <text x="215" y="518" text-anchor="middle" class="conn">A</text>
+  </g>
+  <text x="215" y="565" text-anchor="middle" class="conntext">Quay lại từ phần 2/3</text>
+  <path class="arrow" d="M249 510 L390 510"/>
+
+  <g class="shadow">
+    <rect x="390" y="470" width="420" height="80" rx="18" fill="#e5f0ff"/>
+    <text x="600" y="518" text-anchor="middle" class="text">Đọc frame mới</text>
+  </g>
+  <path class="arrow" d="M600 550 L600 595"/>
+
+  <g class="shadow">
+    <path d="M600 595 L780 680 L600 765 L420 680 Z" fill="#fff0c7"/>
+    <text x="600" y="675" text-anchor="middle" class="text">Đọc được</text>
+    <text x="600" y="703" text-anchor="middle" class="text">frame?</text>
+  </g>
+
+  <path class="arrow" d="M780 680 L950 680"/>
+  <text x="845" y="660" class="label">Không</text>
+  <g class="shadow">
+    <rect x="950" y="640" width="190" height="80" rx="40" fill="#ffe2e6"/>
+    <text x="1045" y="674" text-anchor="middle" class="text">Kết thúc</text>
+    <text x="1045" y="700" text-anchor="middle" class="sub">hoặc kết nối lại</text>
+  </g>
+
+  <path class="arrow" d="M600 765 L600 805"/>
+  <text x="622" y="790" class="label">Có</text>
+  <g class="shadow">
+    <circle cx="600" cy="820" r="28" fill="#16a34a"/>
+    <text x="600" y="827" text-anchor="middle" class="conn">B</text>
+  </g>
+  <text x="715" y="826" class="conntext">Sang phần 2: xử lý AI</text>
+</svg>

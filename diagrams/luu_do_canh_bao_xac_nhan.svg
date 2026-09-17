@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1650" viewBox="0 0 1400 1650">
+  <defs>
+    <style>
+      .title{font:700 36px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .subtitle{font:400 18px "Segoe UI",Arial,sans-serif;fill:#5b6b80}
+      .text{font:700 20px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .sub{font:400 15px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .label{font:700 15px "Segoe UI",Arial,sans-serif;fill:#334155}
+      .arrow{stroke:#34495e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .loop{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .shadow{filter:url(#shadow)}
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34495e"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff9fb"/>
+      <stop offset="1" stop-color="#eef7ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1400" height="1650" fill="url(#bg)"/>
+  <text x="700" y="62" text-anchor="middle" class="title">Lưu đồ cảnh báo và xác nhận an toàn</text>
+  <text x="700" y="96" text-anchor="middle" class="subtitle">Luồng xử lý sau khi state machine xác nhận trạng thái nguy hiểm</text>
+
+  <!-- Start -->
+  <g class="shadow">
+    <rect x="460" y="135" width="480" height="78" rx="39" fill="#ffe2e8"/>
+    <text x="700" y="182" text-anchor="middle" class="text">Phát hiện trạng thái nguy hiểm</text>
+  </g>
+  <path class="arrow" d="M700 213 L700 265"/>
+
+  <!-- Filter -->
+  <g class="shadow">
+    <rect x="420" y="265" width="560" height="92" rx="18" fill="#ffffff"/>
+    <text x="700" y="302" text-anchor="middle" class="text">AlertManager kiểm tra bộ lọc báo nhầm</text>
+    <text x="700" y="330" text-anchor="middle" class="sub">Số frame nguy hiểm, thời gian nguy hiểm và cooldown</text>
+  </g>
+  <path class="arrow" d="M700 357 L700 410"/>
+
+  <!-- Send condition -->
+  <g class="shadow">
+    <path d="M700 410 L905 510 L700 610 L495 510 Z" fill="#fff0c7"/>
+    <text x="700" y="505" text-anchor="middle" class="text">Đủ điều kiện</text>
+    <text x="700" y="533" text-anchor="middle" class="text">gửi cảnh báo?</text>
+  </g>
+
+  <!-- No branch -->
+  <path class="arrow" d="M495 510 L285 510"/>
+  <text x="392" y="490" class="label">Không</text>
+  <g class="shadow">
+    <rect x="80" y="467" width="205" height="86" rx="18" fill="#e5f0ff"/>
+    <text x="182.5" y="501" text-anchor="middle" class="text">Không gửi</text>
+    <text x="182.5" y="529" text-anchor="middle" class="sub">Tiếp tục theo dõi</text>
+  </g>
+
+  <!-- Yes branch -->
+  <path class="arrow" d="M700 610 L700 670"/>
+  <text x="724" y="642" class="label">Có</text>
+
+  <!-- Snapshot -->
+  <g class="shadow">
+    <rect x="420" y="670" width="560" height="92" rx="18" fill="#ffdfe5"/>
+    <text x="700" y="707" text-anchor="middle" class="text">Tạo alert_id và ảnh snapshot</text>
+    <text x="700" y="735" text-anchor="middle" class="sub">Vẽ khung cảnh báo, lưu ảnh vào outputs/alerts</text>
+  </g>
+  <path class="arrow" d="M700 762 L700 815"/>
+
+  <!-- Record -->
+  <g class="shadow">
+    <rect x="420" y="815" width="560" height="92" rx="18" fill="#ffffff"/>
+    <text x="700" y="852" text-anchor="middle" class="text">Lưu bản ghi cảnh báo</text>
+    <text x="700" y="880" text-anchor="middle" class="sub">camera_id, track_id, status, confidence, fall_score</text>
+  </g>
+  <path class="arrow" d="M700 907 L700 955"/>
+
+  <!-- Output channels -->
+  <circle cx="700" cy="955" r="5" fill="#34495e"/>
+  <path class="arrow" d="M700 955 L245 955 L245 1005"/>
+  <path class="arrow" d="M700 955 L700 1005"/>
+  <path class="arrow" d="M700 955 L1155 955 L1155 1005"/>
+
+  <g class="shadow">
+    <rect x="80" y="1005" width="330" height="92" rx="18" fill="#ffe2e8"/>
+    <text x="245" y="1042" text-anchor="middle" class="text">Telegram</text>
+    <text x="245" y="1070" text-anchor="middle" class="sub">Gửi ảnh + link xác nhận</text>
+  </g>
+
+  <g class="shadow">
+    <rect x="535" y="1005" width="330" height="92" rx="18" fill="#e8e1ff"/>
+    <text x="700" y="1042" text-anchor="middle" class="text">Dashboard / Cloudflare</text>
+    <text x="700" y="1070" text-anchor="middle" class="sub">Người giám sát mở URL</text>
+  </g>
+
+  <g class="shadow">
+    <rect x="990" y="1005" width="330" height="92" rx="18" fill="#ffecc2"/>
+    <text x="1155" y="1042" text-anchor="middle" class="text">ESP32 + Loa</text>
+    <text x="1155" y="1070" text-anchor="middle" class="sub">Đọc /status, phát âm thanh</text>
+  </g>
+
+  <!-- Guardian opens and decides -->
+  <path class="arrow" d="M245 1097 L245 1165 L545 1165"/>
+  <path class="arrow" d="M700 1097 L700 1140"/>
+  <g class="shadow">
+    <rect x="545" y="1140" width="310" height="70" rx="35" fill="#dff7ea"/>
+    <text x="700" y="1168" text-anchor="middle" class="text">Người giám sát</text>
+    <text x="700" y="1193" text-anchor="middle" class="sub">mở link cảnh báo</text>
+  </g>
+  <path class="arrow" d="M700 1210 L700 1265"/>
+
+  <g class="shadow">
+    <path d="M700 1265 L905 1365 L700 1465 L495 1365 Z" fill="#fff0c7"/>
+    <text x="700" y="1360" text-anchor="middle" class="text">Xác nhận</text>
+    <text x="700" y="1388" text-anchor="middle" class="text">an toàn?</text>
+  </g>
+
+  <!-- Yes -->
+  <path class="arrow" d="M700 1465 L700 1520"/>
+  <text x="724" y="1495" class="label">Có</text>
+  <g class="shadow">
+    <rect x="460" y="1520" width="480" height="82" rx="41" fill="#dff7ea"/>
+    <text x="700" y="1553" text-anchor="middle" class="text">Đánh dấu acknowledged</text>
+    <text x="700" y="1581" text-anchor="middle" class="sub">Dừng nhắc lại Telegram</text>
+  </g>
+
+  <!-- No reminder -->
+  <path class="arrow" d="M905 1365 L1065 1365"/>
+  <text x="965" y="1345" class="label">Không</text>
+  <g class="shadow">
+    <rect x="1065" y="1318" width="265" height="94" rx="18" fill="#ffe2e8"/>
+    <text x="1197.5" y="1354" text-anchor="middle" class="text">Nhắc lại Telegram</text>
+    <text x="1197.5" y="1382" text-anchor="middle" class="sub">Theo thời gian cấu hình</text>
+  </g>
+  <path class="loop" d="M1197.5 1412 L1197.5 1630 L40 1630 L40 1051 L80 1051"/>
+</svg>

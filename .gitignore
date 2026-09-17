@@ -1,0 +1,46 @@
+﻿# Git cũ / Git backup
+.git_old/
+
+# Dữ liệu cá nhân
+data/
+
+# Secret
+.env
+*.env
+
+# Runtime output
+phan_mem/outputs/
+
+# Log
+*.log
+phan_mem/logs/
+
+# Dataset / dữ liệu tải về
+phan_mem/data/
+phan_mem/datasets/
+phan_mem/downloads/
+
+# AI model / checkpoint
+*.pt
+*.pth
+*.onnx
+phan_mem/checkpoints/
+
+# Ultralytics
+phan_mem/.ultralytics/
+
+# Backup code
+phan_mem/backups/
+phan_mem/auth_backup_*/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# VS Code
+.vscode/
+**/.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

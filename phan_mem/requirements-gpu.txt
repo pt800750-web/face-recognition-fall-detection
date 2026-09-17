@@ -1,0 +1,7 @@
+# Optional GPU build for NVIDIA cards.
+# Install the normal requirements first, then install this file to replace
+# CPU-only PyTorch with CUDA 12.4 wheels.
+--index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+torchaudio==2.6.0+cu124

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style>
+      .title{font:700 34px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .subtitle{font:400 18px "Segoe UI",Arial,sans-serif;fill:#5b6b80}
+      .box-title{font:700 19px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .box-text{font:400 14px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .small{font:600 13px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .group{font:700 15px "Segoe UI",Arial,sans-serif;fill:#ffffff}
+      .arrow{stroke:#34495e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .arrow-soft{stroke:#697b8f;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .shadow{filter:url(#shadow)}
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34495e"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#eef7f3"/>
+    </linearGradient>
+    <linearGradient id="ai" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dff3ff"/>
+      <stop offset="1" stop-color="#bfe8ff"/>
+    </linearGradient>
+    <linearGradient id="logic" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1cc"/>
+      <stop offset="1" stop-color="#ffd98a"/>
+    </linearGradient>
+    <linearGradient id="alert" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe2e5"/>
+      <stop offset="1" stop-color="#ffc1ca"/>
+    </linearGradient>
+    <linearGradient id="io" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e5f7ec"/>
+      <stop offset="1" stop-color="#bdeccf"/>
+    </linearGradient>
+    <linearGradient id="cloud" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ebe7ff"/>
+      <stop offset="1" stop-color="#d5ccff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <text x="700" y="62" text-anchor="middle" class="title">Sơ đồ khối tổng thể hệ thống phát hiện té ngã</text>
+  <text x="700" y="94" text-anchor="middle" class="subtitle">Camera không dây, AI nhận diện, dashboard, Telegram, Cloudflare và ESP32 cảnh báo âm thanh</text>
+
+  <rect x="55" y="135" width="260" height="86" rx="18" fill="url(#io)" class="shadow"/>
+  <text x="185" y="169" text-anchor="middle" class="box-title">Webcam / DroidCam</text>
+  <text x="185" y="195" text-anchor="middle" class="box-text">Điện thoại làm camera không dây</text>
+
+  <rect x="55" y="270" width="260" height="86" rx="18" fill="url(#io)" class="shadow"/>
+  <text x="185" y="304" text-anchor="middle" class="box-title">Video / IP Camera</text>
+  <text x="185" y="330" text-anchor="middle" class="box-text">Nguồn video local hoặc URL</text>
+
+  <rect x="390" y="205" width="235" height="90" rx="18" fill="#ffffff" class="shadow"/>
+  <text x="507.5" y="239" text-anchor="middle" class="box-title">OpenCV</text>
+  <text x="507.5" y="265" text-anchor="middle" class="box-text">Đọc frame từ camera/video</text>
+
+  <rect x="700" y="130" width="250" height="90" rx="18" fill="url(#ai)" class="shadow"/>
+  <text x="825" y="163" text-anchor="middle" class="box-title">YOLOv8 Pose</text>
+  <text x="825" y="189" text-anchor="middle" class="box-text">Phát hiện người + keypoint</text>
+
+  <rect x="700" y="260" width="250" height="90" rx="18" fill="url(#ai)" class="shadow"/>
+  <text x="825" y="293" text-anchor="middle" class="box-title">Person Tracker</text>
+  <text x="825" y="319" text-anchor="middle" class="box-text">Gán ID từng người theo thời gian</text>
+
+  <rect x="700" y="390" width="250" height="90" rx="18" fill="url(#ai)" class="shadow"/>
+  <text x="825" y="423" text-anchor="middle" class="box-title">Feature Extraction</text>
+  <text x="825" y="449" text-anchor="middle" class="box-text">37 đặc trưng hình học, pose, motion</text>
+
+  <rect x="700" y="520" width="250" height="90" rx="18" fill="url(#ai)" class="shadow"/>
+  <text x="825" y="553" text-anchor="middle" class="box-title">GRU Classifier</text>
+  <text x="825" y="579" text-anchor="middle" class="box-text">Phân loại 8 trạng thái</text>
+
+  <rect x="700" y="650" width="250" height="90" rx="18" fill="url(#logic)" class="shadow"/>
+  <text x="825" y="683" text-anchor="middle" class="box-title">Fall State Machine</text>
+  <text x="825" y="709" text-anchor="middle" class="box-text">Xác nhận té ngã, giảm báo nhầm</text>
+
+  <rect x="1060" y="250" width="260" height="88" rx="18" fill="#ffffff" class="shadow"/>
+  <text x="1190" y="283" text-anchor="middle" class="box-title">Web Dashboard</text>
+  <text x="1190" y="309" text-anchor="middle" class="box-text">4 camera, trạng thái, lịch sử</text>
+
+  <rect x="1060" y="375" width="260" height="88" rx="18" fill="url(#cloud)" class="shadow"/>
+  <text x="1190" y="408" text-anchor="middle" class="box-title">Cloudflare URL</text>
+  <text x="1190" y="434" text-anchor="middle" class="box-text">Tên miền dễ truy cập</text>
+
+  <rect x="1060" y="500" width="260" height="88" rx="18" fill="url(#alert)" class="shadow"/>
+  <text x="1190" y="533" text-anchor="middle" class="box-title">Telegram Bot</text>
+  <text x="1190" y="559" text-anchor="middle" class="box-text">Gửi ảnh + link xác nhận</text>
+
+  <rect x="1060" y="625" width="260" height="88" rx="18" fill="url(#alert)" class="shadow"/>
+  <text x="1190" y="658" text-anchor="middle" class="box-title">ESP32 + Loa</text>
+  <text x="1190" y="684" text-anchor="middle" class="box-text">Đọc /status, phát cảnh báo</text>
+
+  <path class="arrow" d="M315 178 C350 178,355 250,390 250"/>
+  <path class="arrow" d="M315 313 C350 313,355 250,390 250"/>
+  <path class="arrow" d="M625 250 C660 250,665 175,700 175"/>
+  <path class="arrow" d="M825 220 L825 260"/>
+  <path class="arrow" d="M825 350 L825 390"/>
+  <path class="arrow" d="M825 480 L825 520"/>
+  <path class="arrow" d="M825 610 L825 650"/>
+
+  <path class="arrow-soft" d="M950 695 C1005 695,1010 294,1060 294"/>
+  <path class="arrow-soft" d="M950 695 C1010 695,1005 544,1060 544"/>
+  <path class="arrow-soft" d="M950 695 C990 695,1015 669,1060 669"/>
+  <path class="arrow-soft" d="M1190 338 L1190 375"/>
+
+  <rect x="690" y="115" width="270" height="642" rx="24" fill="none" stroke="#60a5b8" stroke-width="2" stroke-dasharray="8 8"/>
+  <rect x="684" y="105" width="142" height="28" rx="14" fill="#3399b8"/>
+  <text x="755" y="124" text-anchor="middle" class="group">Khối AI</text>
+
+  <rect x="1048" y="235" width="286" height="492" rx="24" fill="none" stroke="#dd7180" stroke-width="2" stroke-dasharray="8 8"/>
+  <rect x="1042" y="225" width="190" height="28" rx="14" fill="#d65d70"/>
+  <text x="1137" y="244" text-anchor="middle" class="group">Khối cảnh báo</text>
+
+  <text x="185" y="402" text-anchor="middle" class="small">Nguồn vào linh hoạt: USB, điện thoại, camera IP, video test</text>
+  <text x="700" y="835" text-anchor="middle" class="subtitle">Đầu ra hệ thống: cập nhật dashboard, gửi Telegram, phát âm thanh ESP32 và tạo link xác nhận an toàn</text>
+</svg>

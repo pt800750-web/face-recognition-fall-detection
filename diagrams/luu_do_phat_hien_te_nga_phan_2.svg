@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <style>
+      .title{font:700 30px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .text{font:700 20px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .sub{font:400 15px "Segoe UI",Arial,sans-serif;fill:#526173}
+      .label{font:700 15px "Segoe UI",Arial,sans-serif;fill:#334155}
+      .conn{font:700 20px "Segoe UI",Arial,sans-serif;fill:#ffffff}
+      .conntext{font:700 15px "Segoe UI",Arial,sans-serif;fill:#102033}
+      .arrow{stroke:#34495e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .loop{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .shadow{filter:url(#shadow)}
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34495e"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="900" fill="#f4faf7"/>
+  <text x="600" y="55" text-anchor="middle" class="title">Lưu đồ phát hiện té ngã - Phần 2: Xử lý AI</text>
+
+  <g class="shadow">
+    <circle cx="600" cy="105" r="30" fill="#16a34a"/>
+    <text x="600" y="112" text-anchor="middle" class="conn">B</text>
+  </g>
+  <text x="670" y="112" class="conntext">Từ phần 1: đã đọc được frame</text>
+  <path class="arrow" d="M600 135 L600 185"/>
+
+  <g class="shadow">
+    <rect x="285" y="185" width="630" height="90" rx="18" fill="#dff3ff"/>
+    <text x="600" y="221" text-anchor="middle" class="text">YOLOv8 Pose phát hiện người</text>
+    <text x="600" y="249" text-anchor="middle" class="sub">Bounding box, confidence và 17 keypoint cơ thể</text>
+  </g>
+  <path class="arrow" d="M600 275 L600 325"/>
+
+  <g class="shadow">
+    <rect x="330" y="325" width="540" height="82" rx="18" fill="#dff3ff"/>
+    <text x="600" y="374" text-anchor="middle" class="text">Cập nhật tracker và gán track ID</text>
+  </g>
+  <path class="arrow" d="M600 407 L600 457"/>
+
+  <g class="shadow">
+    <rect x="285" y="457" width="630" height="92" rx="18" fill="#dff3ff"/>
+    <text x="600" y="494" text-anchor="middle" class="text">Trích xuất vector đặc trưng</text>
+    <text x="600" y="522" text-anchor="middle" class="sub">37 chiều: hình học, pose, chuyển động và missing flag</text>
+  </g>
+  <path class="arrow" d="M600 549 L600 600"/>
+
+  <g class="shadow">
+    <rect x="330" y="600" width="540" height="82" rx="18" fill="#f0e9ff"/>
+    <text x="600" y="649" text-anchor="middle" class="text">Cập nhật chuỗi đặc trưng theo thời gian</text>
+  </g>
+  <path class="arrow" d="M600 682 L600 728"/>
+
+  <g class="shadow">
+    <path d="M600 728 L780 810 L600 892 L420 810 Z" fill="#fff0c7"/>
+    <text x="600" y="805" text-anchor="middle" class="text">Đủ chuỗi</text>
+    <text x="600" y="833" text-anchor="middle" class="text">48 frame?</text>
+  </g>
+
+  <path class="arrow" d="M420 810 L230 810"/>
+  <text x="323" y="790" text-anchor="middle" class="label">Không</text>
+  <g class="shadow">
+    <circle cx="200" cy="810" r="30" fill="#2563eb"/>
+    <text x="200" y="817" text-anchor="middle" class="conn">A</text>
+  </g>
+  <text x="200" y="858" text-anchor="middle" class="conntext">Quay lại phần 1</text>
+
+  <path class="arrow" d="M780 810 L970 810"/>
+  <text x="872" y="790" text-anchor="middle" class="label">Có</text>
+  <g class="shadow">
+    <circle cx="1000" cy="810" r="30" fill="#7c3aed"/>
+    <text x="1000" y="817" text-anchor="middle" class="conn">C</text>
+  </g>
+  <text x="1000" y="858" text-anchor="middle" class="conntext">Sang phần 3</text>
+</svg>
